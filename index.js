@@ -14,7 +14,6 @@ initiateMongoServer();
 // Middleware
 app.use(bodyParser.json());
 
-
 // Route to render HTML Page 
 // see: https://codehandbook.org/how-to-render-html-page-in-express/
 app.get('/', (req, res) => {

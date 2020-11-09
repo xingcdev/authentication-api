@@ -16,10 +16,10 @@ const UserSchema = mongoose.Schema( {
         type: String,
         required: true
     },
-    date: {
-        type: Date,
-        default: Date.now()
-    },
+    // date: {
+    //     type: Date,
+    //     default: Date.now()
+    // },
 } );
 
 // Users cannot have same email

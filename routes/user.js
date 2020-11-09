@@ -4,22 +4,16 @@ const bcrypt = require('bcryptjs');
 const jwt = require("jsonwebtoken");
 const router = express.Router();
 
-// Import the User model
-const User = require('../model/User');
+// Import user controller
+const userController = require('../controllers/userController');
 
 /**
  * @method - POST
  * @param - /signup
- * @description - User SignUp
+ * @description - User Signup
  */
+router.post('/signup', userController.signup);
 
- router.post(
-     '/signup',
-     
- );
+router.post('/login', userController.login);
 
- router.get('/login', function (req, res) {
-    res.send('Birds home page')
-  });
-
- module.exports = router;
+module.exports = router;
