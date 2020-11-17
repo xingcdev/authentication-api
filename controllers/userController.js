@@ -1,6 +1,7 @@
 const userModel = require('../model/User');
 const bcrypt = require('bcrypt');
 const User = require('../model/User');
+const jsonWebToken = require('jsonwebtoken')
 
 exports.signup = (req, res) => {
     
@@ -43,13 +44,22 @@ exports.login = (req, res) => {
         .then( valid => {
             // If we didn't found the user with same password
             // valid === false
+            // Return 401 Unauthorized error
             if (!valid) return res.status(401).json( {error : 'Incorrect password'} )
 
             // valid ==== true
             // Send the user id and the token to the frontend
             res.status(200).json( {
                 userId: user._id,
-                token: 'TOKEN'
+                // Create a Json web token
+                token: jsonWebToken.sign(
+                    // The Token's payload
+                    { userId: user._id },
+                    // Random string key
+                    'RANDOM_STRING',
+                    // Token expires in 24h
+                    { expiresIn: '24h' }
+                )
             } )
 
         } )
