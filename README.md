@@ -1,3 +1,3 @@
-https://www.youtube.com/watch?v=Ne0tLHm1juE 
+https://www.youtube.com/watch?v=Ne0tLHm1juE
 
-https://dev.to/dipakkr/implementing-authentication-in-nodejs-with-express-and-jwt-codelab-1-j5i 
+https://medium.com/swlh/jwt-authentication-authorization-in-nodejs-express-mongodb-rest-apis-2019-ad14ec818122
