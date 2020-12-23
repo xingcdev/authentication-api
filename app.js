@@ -26,6 +26,6 @@ app.use(express.json());
 // });
 
 // User router contains routes related to user
-// app.use("/api/auth", userRouter);
+app.use(userRouter);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));

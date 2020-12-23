@@ -1,6 +1,6 @@
-const mongoose = require("mongoose");
+const mongoose = require('mongoose');
 
-const mongoUrl = "mongodb://localhost:27017/test";
+const mongoUrl = 'mongodb://localhost:27017/test';
 
 // Connect to the database
 const initiateMongoServer = async () => {
@@ -9,8 +9,9 @@ const initiateMongoServer = async () => {
 			// Avoid deprecation warnings in MongoDB driver
 			useNewUrlParser: true,
 			useCreateIndex: true,
+			useUnifiedTopology: true,
 		});
-		console.log("Connected to the Database!");
+		console.log('Connected to the Database!');
 	} catch (error) {
 		console.log(error);
 		throw error;
