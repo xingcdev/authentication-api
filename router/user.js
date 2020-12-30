@@ -2,6 +2,7 @@ const express = require('express');
 const UserModel = require('../model/User');
 const router = express.Router();
 const authMiddleware = require('../middleware/auth');
+const { response } = require('express');
 
 // Route to create a new user
 router.post('/users', async function (req, res) {
@@ -33,7 +34,37 @@ router.post('/users/login', async function (req, res) {
 });
 
 router.get('/users/me', authMiddleware, async function (req, res) {
-	res.send(req);
+	res.send(req.user);
+});
+
+// Log user out of the application
+router.post('/users/me/logout', authMiddleware, async function (req, res) {
+	try {
+		// Remove the token that was used to log in
+		req.user.tokens = req.user.tokens.filter(function (token) {
+			// Return a new array that contains any other tokens apart from the one that was used to log in
+			return token.token != req.token;
+		});
+		await req.user.save();
+		res.send({ error: 'Successful logout.' });
+	} catch (error) {
+		console.log(error);
+		res.status(500).send(error);
+	}
+});
+
+// Log user out of all devices
+router.post('/users/me/logoutall', authMiddleware, async function (req, res) {
+	try {
+		// Remove the token that was used to log in
+		// Clear all tokens from index 0
+		req.user.tokens.splice(0, req.user.tokens.length);
+		await req.user.save();
+		res.send({ error: 'Successful logout on all devices.' });
+	} catch (error) {
+		console.log(error);
+		res.status(500).send(error);
+	}
 });
 
 module.exports = router;
