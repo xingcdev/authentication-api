@@ -20,6 +20,7 @@ router.post('/users/login', async function (req, res) {
 	// Login a registered user
 	try {
 		const { email, password } = req.body;
+		console.log(email, password);
 		const foundUser = await UserModel.findByCredentials(email, password);
 		if (!foundUser) {
 			// "unauthorized" error

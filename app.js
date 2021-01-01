@@ -1,14 +1,30 @@
-const express = require("express");
-const path = require("path");
-const bodyParser = require("body-parser");
-const initiateMongoServer = require("./config/db");
+const express = require('express');
+const path = require('path');
+const bodyParser = require('body-parser');
+const initiateMongoServer = require('./config/db');
 // Import user router
-const userRouter = require("./router/user");
+const userRouter = require('./router/user');
+const expressLayouts = require('express-ejs-layouts');
 
 // Ihe port in .env file
 const port = process.env.PORT;
 
 const app = express();
+
+// EJS
+app.set('view engine', 'ejs');
+app.use(expressLayouts);
+
+// Access email & password html form variable from the request body
+app.use(express.urlencoded({ extended: false }));
+
+app.get('/', function (req, res) {
+	res.render('index.ejs', { name: 'Xing' });
+});
+
+app.get('/login', function (req, res) {
+	res.render('login.ejs');
+});
 
 // Initiate Mongo server
 initiateMongoServer();
