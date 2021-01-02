@@ -19,11 +19,19 @@ app.use(expressLayouts);
 app.use(express.urlencoded({ extended: false }));
 
 app.get('/', function (req, res) {
-	res.render('index.ejs', { name: 'Xing' });
+	res.render('index', { name: 'Xing' });
 });
 
 app.get('/login', function (req, res) {
-	res.render('login.ejs');
+	res.render('login');
+});
+
+app.get('/register', function (req, res) {
+	res.render('register');
+});
+
+app.get('/dashboard', function (req, res) {
+	res.render('dashboard');
 });
 
 // Initiate Mongo server
