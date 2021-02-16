@@ -1,6 +1,5 @@
-const jwt = require('jsonwebtoken');
-const User = require('../model/User');
-const UserModel = require('../model/User');
+import jwt from 'jsonwebtoken';
+import User from '../model/User.js';
 
 // Check if a user is authorized to access the server resources
 const auth = async function (req, res, next) {
@@ -28,4 +27,4 @@ const auth = async function (req, res, next) {
 	}
 };
 
-module.exports = auth;
+export default auth;

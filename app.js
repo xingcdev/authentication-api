@@ -1,12 +1,17 @@
-const express = require('express');
-const initiateMongoServer = require('./config/db');
+import express from 'express';
+import expressLayouts from 'express-ejs-layouts';
+import initiateMongoServer from './config/db.js';
 // Import user router
-const userRouter = require('./router/user');
+import userRouter from './router/user.js';
+import indexRouter from './router/index.js';
 
 // Ihe port in .env file
 const port = process.env.PORT;
-
 const app = express();
+
+// EJS
+app.use(expressLayouts);
+app.set('view engine', 'ejs');
 
 // Initiate Mongo server
 initiateMongoServer();
@@ -25,5 +30,6 @@ app.use(express.json());
 
 // User router contains routes related to user
 app.use(userRouter);
+app.use(indexRouter);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));

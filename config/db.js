@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const mongoUrl = 'mongodb://localhost:27017/test';
 
@@ -18,4 +18,4 @@ const initiateMongoServer = async () => {
 	}
 };
 
-module.exports = initiateMongoServer;
+export default initiateMongoServer;

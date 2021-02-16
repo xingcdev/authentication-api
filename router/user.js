@@ -1,9 +1,8 @@
-const express = require('express');
-const UserModel = require('../model/User');
-const router = express.Router();
-const authMiddleware = require('../middleware/auth');
-const { response } = require('express');
+import express from 'express';
+import UserModel from '../model/User.js';
+import authMiddleware from '../middleware/auth.js';
 
+const router = express.Router();
 // Route to create a new user
 router.post('/users', async function (req, res) {
 	try {
@@ -68,4 +67,4 @@ router.post('/users/me/logoutall', authMiddleware, async function (req, res) {
 	}
 });
 
-module.exports = router;
+export default router;

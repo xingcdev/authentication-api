@@ -1,8 +1,8 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
-const validator = require('validator');
-const jwt = require('jsonwebtoken');
-const uniqueValidator = require('mongoose-unique-validator');
+import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
+import validator from 'validator';
+import jwt from 'jsonwebtoken';
+import uniqueValidator from 'mongoose-unique-validator';
 
 const UserSchema = mongoose.Schema({
 	username: {
@@ -65,4 +65,4 @@ UserSchema.statics.findByCredentials = async function (email, password) {
 };
 
 // Export the model user with UserSchema
-module.exports = mongoose.model('User', UserSchema);
+export default mongoose.model('User', UserSchema);
