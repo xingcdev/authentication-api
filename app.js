@@ -2,7 +2,8 @@ import express from 'express';
 import initiateMongoServer from './config/db.js';
 // Import user router
 import authRoute from './router/user.js';
-
+import dotenv from 'dotenv';
+dotenv.config();
 // Ihe port in .env file
 const port = process.env.PORT;
 const app = express();

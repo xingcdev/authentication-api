@@ -1,11 +1,9 @@
 import mongoose from 'mongoose';
 
-const mongoUrl = 'mongodb://localhost:27017/test';
-
 // Connect to the database
 const initiateMongoServer = async () => {
 	try {
-		await mongoose.connect(mongoUrl, {
+		await mongoose.connect(process.env.MONGODB_URL, {
 			// Avoid deprecation warnings in MongoDB driver
 			useNewUrlParser: true,
 			useCreateIndex: true,
