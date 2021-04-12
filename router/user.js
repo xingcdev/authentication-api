@@ -4,7 +4,7 @@ import authMiddleware from '../middleware/auth.js';
 
 const router = express.Router();
 // Route to create a new user
-router.post('/users', async function (req, res) {
+router.post('/register', async function (req, res) {
 	try {
 		const newUser = new UserModel(req.body);
 		await newUser.save();
@@ -15,7 +15,7 @@ router.post('/users', async function (req, res) {
 	}
 });
 
-router.post('/users/login', async function (req, res) {
+router.post('/login', async function (req, res) {
 	// Login a registered user
 	try {
 		const { email, password } = req.body;
@@ -33,12 +33,12 @@ router.post('/users/login', async function (req, res) {
 	}
 });
 
-router.get('/users/me', authMiddleware, async function (req, res) {
+router.get('/me', authMiddleware, async function (req, res) {
 	res.send(req.user);
 });
 
 // Log user out of the application
-router.post('/users/me/logout', authMiddleware, async function (req, res) {
+router.post('/logout', authMiddleware, async function (req, res) {
 	try {
 		// Remove the token that was used to log in
 		req.user.tokens = req.user.tokens.filter(function (token) {
