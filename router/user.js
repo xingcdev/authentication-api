@@ -54,7 +54,7 @@ router.post('/logout', authMiddleware, async function (req, res) {
 });
 
 // Log user out of all devices
-router.post('/users/me/logoutall', authMiddleware, async function (req, res) {
+router.post('/logoutall', authMiddleware, async function (req, res) {
 	try {
 		// Remove the token that was used to log in
 		// Clear all tokens from index 0

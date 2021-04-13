@@ -18,7 +18,7 @@ app.get('/', (req, res) => {
 	res.send('hello');
 });
 
-// User router contains routes related to user
-app.use(authRoute);
+// Prefix of the routes
+app.use('/api/auth/', authRoute);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
