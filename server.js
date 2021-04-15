@@ -22,3 +22,6 @@ app.get('/', (req, res) => {
 app.use('/api/auth/', authRoute);
 
 app.listen(port, () => console.log(`Server is running on port ${port}`));
+
+// Used for API unit tests
+export default app;
