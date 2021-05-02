@@ -5,8 +5,8 @@
 	"main": "index.js",
 	"type": "module",
 	"scripts": {
-		"start": "env-cmd -f ./.env nodemon app.js",
-		"test": "mocha"
+		"start": "env-cmd -f ./.env nodemon server.js",
+		"test": "mocha --timeout 10000"
 	},
 	"keywords": [],
 	"author": "",
