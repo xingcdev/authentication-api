@@ -1,6 +1,7 @@
 import express from 'express';
 import UserModel from '../model/User.js';
 import authMiddleware from '../middleware/auth.js';
+import e from 'express';
 
 const router = express.Router();
 // Route to create a new user
@@ -19,17 +20,19 @@ router.post('/login', async function (req, res) {
 	// Login a registered user
 	try {
 		const { email, password } = req.body;
-		console.log(email, password);
 		const foundUser = await UserModel.findByCredentials(email, password);
-		if (!foundUser) {
-			// "unauthorized" error
-			return res.status(401).send({ error: 'Login failed.' });
-		}
+		// if (!foundUser) {
+		// 	console.log('should be here');
+		// 	// "unauthorized" error
+		// 	return res.status(401).send({ error: 'Login failed.' });
+		// }
 		const token = await foundUser.generateAuthToken();
 		res.send({ foundUser, token });
-	} catch (error) {
-		console.log(error);
-		res.status(400).send(error);
+	} catch (e) {
+		// console.log(e);
+		res.status(401).send({
+			error: e.message,
+		});
 	}
 });
 
