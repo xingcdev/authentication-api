@@ -9,8 +9,7 @@ router.post('/register', async function (req, res) {
 	try {
 		const newUser = new UserModel(req.body);
 		await newUser.save();
-		const token = await newUser.generateAuthToken();
-		res.status(201).send({ newUser, token });
+		res.status(201).send({ newUser });
 	} catch (error) {
 		res.status(400).send(error);
 	}

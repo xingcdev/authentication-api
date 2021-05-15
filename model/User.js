@@ -24,8 +24,6 @@ const UserSchema = mongoose.Schema({
 		required: true,
 		minLength: 7,
 	},
-	// Useful to enable a user to be logged in on different devices
-	tokens: [{ token: { type: String, required: true } }],
 });
 
 // Apply the uniqueValidator plugin to userSchema.
@@ -43,8 +41,6 @@ UserSchema.pre('save', async function (next) {
 UserSchema.methods.generateAuthToken = async function () {
 	const currentUser = this;
 	const token = jwt.sign({ _id: currentUser._id }, process.env.JWT_KEY);
-	// Add the new token into the list of token of the user
-	currentUser.tokens = currentUser.tokens.concat({ token });
 	await currentUser.save();
 	return token;
 };
