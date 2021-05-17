@@ -5,37 +5,37 @@ import User from '../model/User.js';
 
 let should = chai.should();
 chai.use(chaiHttp);
-
 describe('/POST register', function () {
-	// Delete the user if he exists
-
-	before(function () {
-		User.deleteOne({ email: 'mdupont@email.com' });
+	before(async function () {
+		// Delete the user if he exists
+		// await : wait the app to delete the user
+		await User.deleteOne({
+			email: 'testmdupont@email.com',
+		});
 	});
 
-	// it('should return the user informations and his token', function (done) {
-	// 	// const credentials = {
-	// 	// 	username: 'marcel dupond',
-	// 	// 	email: 'mdupont@email.com',
-	// 	// 	password: '123456789',
-	// 	// };
-	// 	chai
-	// 		.request(app)
-	// 		.post('/api/auth/register')
-	// 		.send(credentials)
-	// 		.end(function (err, res) {
-	// 			res.should.have.status(200);
-	// 			res.body.should.be.a('object');
-	// 			res.body.should.have.property('newUser');
-	// 			res.body.should.have.property('token');
-	// 			done();
-	// 		});
-	// });
+	it('should return the user information', function (done) {
+		const credentials = {
+			username: 'TEST_marcel dupont',
+			email: 'testmdupont@email.com',
+			password: '123456789',
+		};
+		chai
+			.request(app)
+			.post('/api/auth/register')
+			.send(credentials)
+			.end(function (err, res) {
+				res.should.have.status(201);
+				res.body.should.be.a('object');
+				res.body.should.have.property('newUser');
+				done();
+			});
+	});
 
 	it('should return the unique email error', function (done) {
 		const credentials = {
-			username: 'kevin jean',
-			email: 'kjean@email.com',
+			username: 'TEST_kevin jean',
+			email: 'testkjean@email.com',
 			password: '123456789',
 		};
 		chai
