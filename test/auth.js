@@ -60,7 +60,7 @@ describe('/POST login', function () {
 
 	it('should return the name and the token of the user', (done) => {
 		const credentials = {
-			email: 'kjean@email.com',
+			email: 'testmdupont@email.com',
 			password: '123456789',
 		};
 		chai
@@ -80,7 +80,7 @@ describe('/POST login', function () {
 
 	it('should return the error the login is not found', (done) => {
 		const credentials = {
-			email: 'kjean@email.co',
+			email: 'doestexist@email.com',
 			password: '123456789',
 		};
 		chai
@@ -100,7 +100,7 @@ describe('/POST login', function () {
 
 	it('should return the error the password is not found', (done) => {
 		const credentials = {
-			email: 'kjean@email.com',
+			email: 'testmdupont@email.com',
 			password: '12345678',
 		};
 		chai
