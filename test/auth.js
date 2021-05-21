@@ -165,4 +165,3 @@ describe('/GET me', function () {
 	});
 });
 describe('/POST logout', function () {});
-describe('/POST logoutall', function () {});
