@@ -164,4 +164,35 @@ describe('/GET me', function () {
 			});
 	});
 });
-describe('/POST logout', function () {});
+
+describe('/POST logout', function () {
+	it('should return the success boolean', (done) => {
+		const credentials = {
+			email: 'testmdupont@email.com',
+			password: '123456789',
+		};
+
+		chai
+			.request(app)
+			.post('/api/auth/login')
+			.send(credentials)
+			// When we have the server's response
+			.end((error, response) => {
+				response.should.have.status(200);
+				response.body.should.have.property('token');
+				console.log('Successful login');
+
+				const token = response.body.token;
+				chai
+					.request(app)
+					.post('/api/auth/logout')
+					// we set the auth header with our token
+					.set('Authorization', 'Bearer ' + token)
+					.end((error, response) => {
+						response.should.have.status(200);
+						response.body.should.have.property('success').eql(true);
+						done();
+					});
+			});
+	});
+});

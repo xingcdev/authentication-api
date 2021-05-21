@@ -43,12 +43,9 @@ router.get('/me', authMiddleware, async function (req, res) {
 router.post('/logout', authMiddleware, async function (req, res) {
 	try {
 		// Remove the token that was used to log in
-		req.user.tokens = req.user.tokens.filter(function (token) {
-			// Return a new array that contains any other tokens apart from the one that was used to log in
-			return token.token != req.token;
-		});
+		req.user.token = '';
 		await req.user.save();
-		res.send({ error: 'Successful logout.' });
+		res.send({ success: true, message: 'You are logged out.' });
 	} catch (error) {
 		console.log(error);
 		res.status(500).send(error);
