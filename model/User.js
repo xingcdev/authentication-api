@@ -24,6 +24,9 @@ const UserSchema = mongoose.Schema({
 		required: true,
 		minLength: 7,
 	},
+	token: {
+		type: String,
+	},
 });
 
 // Apply the uniqueValidator plugin to userSchema.
@@ -41,6 +44,7 @@ UserSchema.pre('save', async function (next) {
 UserSchema.methods.generateAuthToken = async function () {
 	const currentUser = this;
 	const token = jwt.sign({ _id: currentUser._id }, process.env.JWT_KEY);
+	currentUser.token = token;
 	await currentUser.save();
 	return token;
 };

@@ -119,6 +119,50 @@ describe('/POST login', function () {
 	});
 });
 
-describe('/GET me', function () {});
+describe('/GET me', function () {
+	it('should return the username and the email', (done) => {
+		const credentials = {
+			email: 'testmdupont@email.com',
+			password: '123456789',
+		};
+
+		chai
+			.request(app)
+			.post('/api/auth/login')
+			.send(credentials)
+			// When we have the server's response
+			.end((error, response) => {
+				response.should.have.status(200);
+				response.body.should.have.property('token');
+				console.log('Successful login');
+				const token = response.body.token;
+				chai
+					.request(app)
+					.get('/api/auth/me')
+					// we set the auth header with our token
+					.set('Authorization', 'Bearer ' + token)
+					.end((error, response) => {
+						response.should.have.status(200);
+						response.body.should.have.property('email');
+						response.body.should.have.property('username');
+						done();
+					});
+			});
+	});
+
+	it('should return the error message', (done) => {
+		chai
+			.request(app)
+			.get('/api/auth/me')
+			.set('Authorization', 'Bearer token_key')
+			.end((error, response) => {
+				response.should.have.status(401);
+				response.body.should.have
+					.property('error')
+					.eql('You are not authorized to access to this resource.');
+				done();
+			});
+	});
+});
 describe('/POST logout', function () {});
 describe('/POST logoutall', function () {});
