@@ -154,7 +154,6 @@ describe('/GET me', function () {
 		chai
 			.request(app)
 			.get('/api/auth/me')
-			.set('Authorization', 'Bearer token_key')
 			.end((error, response) => {
 				response.should.have.status(401);
 				response.body.should.have

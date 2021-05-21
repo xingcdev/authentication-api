@@ -4,6 +4,12 @@ import User from '../model/User.js';
 // Check if a user is authorized to access the server resources
 const auth = async function (req, res, next) {
 	try {
+		if (!req.header('authorization')) {
+			res
+				.status(401)
+				.send({ error: 'You are not authorized to access to this resource.' });
+		}
+
 		const token = req.header('authorization').replace('Bearer ', '');
 		// Check if the received token was created using our JWT_KEY
 		const data = jwt.verify(token, process.env.JWT_KEY);
