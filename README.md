@@ -1,16 +1,48 @@
-https://www.youtube.com/watch?v=6FOq4cUdH8k
-
-https://medium.com/swlh/jwt-authentication-authorization-in-https://www.youtube.com/watch?v=6FOq4cUdH8k
-
-https://medium.com/swlh/jwt-authentication-authorization-in-nodejs-express-mongodb-rest-apis-2019-ad14ec818122nodejs-express-mongodb-rest-apis-2019-ad14ec818122
-
-a JWT Authentication REST API allows to register a user, log in as a registered user, get the user profile and log out a user.
+This is a JWT (Json Web Token) Authentication REST API allows you to register a user, log in as a registered user, get the user profile and log out a user.
 
 ## Why this project ?
 
+I build the API because i want to learn [Node.js](https://nodejs.org/en/) by practicing.
+
+## Installation
+
+Open your terminal and clone this repository to your local repertory:
+
+```shell
+git clone https://github.com/xingcdev/authentication-api.git
+```
+
+Create `.env` file from `.env.example` file and replace `your_mongodb_url` with the URL of your MongoDB in order to connect to the database:
+
+```
+MONGODB_URL=your_mongodb_url
+JWT_KEY=WinterIsComingGOT2019
+PORT=4000
+```
+
+To get the URL of your database, your need to connect on [mongodb.com](https://www.mongodb.com/). In the **Clusters** view, click **Connect** for the cluster to which you want to connect. Choose **Connect your application** and copy the string of the URL.
+
+More details [here](https://docs.atlas.mongodb.com/driver-connection/).
+
+## Usage
+
+Start the localhost server:
+
+```shell
+npm start
+```
+
+Go to the URL `localhost:4000` in your Internet browse and you should see `hello`.
+
+You can check if everything works like a charm by running the tests:
+
+```shell
+npm test
+```
+
 ## Required npm packages
 
-Below is the required packages. They are installed by using npm.
+Below is the required packages. They are installed by using the package manager [npm](https://www.npmjs.com/).
 
 `express` — A minimalist Web framework makes easier to build a HTTP server.
 
@@ -29,6 +61,14 @@ Below is the required packages. They are installed by using npm.
 `chai` — An assertion library which allows to test HTTP calls such as GET request, POST request, etc.
 
 ## API Routes
+
+`HTTP POST /api/auth/register` — enregistrer un utilisateur
+
+`HTTP POST /api/auth/login` — trouver un utilisateur dans la BDD et lui créer un token dans la liste de ses tokens
+
+`HTTP POST /api/auth/me` — voir le profil de l'utilisateur en reseignant son token présent dans la liste de ses tokens
+
+`HTTP POST /api/auth/logout` — supprimer le token de l'utilisateur de la liste de ses tokens.
 
 ## References
 
