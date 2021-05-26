@@ -62,13 +62,60 @@ Below is the required packages. They are installed by using the package manager 
 
 ## API Routes
 
-`HTTP POST /api/auth/register` — enregistrer un utilisateur
+### `POST /api/auth/register`
 
-`HTTP POST /api/auth/login` — trouver un utilisateur dans la BDD et lui créer un token dans la liste de ses tokens
+Register a user in the database.
 
-`HTTP POST /api/auth/me` — voir le profil de l'utilisateur en reseignant son token présent dans la liste de ses tokens
+The body of this request must contain the following parameters:
 
-`HTTP POST /api/auth/logout` — supprimer le token de l'utilisateur de la liste de ses tokens.
+| parameter | Value                                 |
+| --------- | ------------------------------------- |
+| username  | String                                |
+| email     | String                                |
+| password  | String<br />Min length : 7 characters |
+
+Example response:
+
+```json
+{}
+```
+
+### `POST /api/auth/login`
+
+Find a user in the database and create his access JWT token.
+
+The body of this request must contain the following parameters:
+
+| parameter | Value                                 |
+| --------- | ------------------------------------- |
+| email     | String                                |
+| password  | String<br />Min length : 7 characters |
+
+Example response:
+
+```json
+{}
+```
+
+### `POST /api/auth/me`
+
+Get the user profile, such as the username and the email.
+
+The header of this request must contain the following parameter:
+
+| Header parameter | Value                              |
+| ---------------- | ---------------------------------- |
+| Authorization    | String<br />`Bearer Ngsrgs...MfhH` |
+
+### `POST /api/auth/logout`
+
+Delete the user access token.
+
+The header of this request must contain the following parameter:
+
+| Header parameter | Value                              |
+| ---------------- | ---------------------------------- |
+| Authorization    | String<br />`Bearer Ngsrgs...MfhH` |
 
 ## References
 
