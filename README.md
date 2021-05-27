@@ -1,3 +1,5 @@
+# JWT authentication RESTful API
+
 ## Overview
 
 This is a JWT (Json Web Token) authentication RESTful API allows you to register a user, log in as a registered user, get the user profile and log out a user.
