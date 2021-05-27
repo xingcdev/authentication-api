@@ -15,7 +15,7 @@ initiateMongoServer();
 app.use(express.json());
 
 app.get('/', (req, res) => {
-	res.send('hello');
+	res.send('You are successful connecting to the API.');
 });
 
 // Prefix of the routes
