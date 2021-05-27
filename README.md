@@ -1,4 +1,4 @@
-This is a JWT (Json Web Token) Authentication REST API allows you to register a user, log in as a registered user, get the user profile and log out a user.
+This is a JWT (Json Web Token) authentication RESTful API allows you to register a user, log in as a registered user, get the user profile and log out a user.
 
 ## Why this project ?
 
@@ -22,7 +22,7 @@ PORT=4000
 
 To get the URL of your database, your need to connect on [mongodb.com](https://www.mongodb.com/). In the **Clusters** view, click **Connect** for the cluster to which you want to connect. Choose **Connect your application** and copy the string of the URL.
 
-More details [here](https://docs.atlas.mongodb.com/driver-connection/).
+More details [on the MongoDB documentation](https://docs.atlas.mongodb.com/driver-connection/).
 
 ## Usage
 
@@ -32,7 +32,7 @@ Start the localhost server:
 npm start
 ```
 
-Go to the URL `localhost:4000` in your Internet browse and you should see `hello`.
+Go to the URL `localhost:4000` in your Internet browser and you should see `You are successful connecting to the API.` message.
 
 You can check if everything works like a charm by running the tests:
 
@@ -42,7 +42,7 @@ npm test
 
 ## Required npm packages
 
-Below is the required packages. They are installed by using the package manager [npm](https://www.npmjs.com/).
+Below is the list of required packages. They must be installed by typing the command `npm install` in the terminal.
 
 `express` — A minimalist Web framework makes easier to build a HTTP server.
 
@@ -58,7 +58,7 @@ Below is the required packages. They are installed by using the package manager 
 
 `mosha` — A JavaScript test framework provides a testing environment in which we can use our favorite assertion libraries to test the code.
 
-`chai` — An assertion library which allows to test HTTP calls such as GET request, POST request, etc.
+`chai` — An assertion library which allows to test HTTP calls, such as GET request, POST request, etc.
 
 ## API Routes
 
@@ -77,7 +77,14 @@ The body of this request must contain the following parameters:
 Example response:
 
 ```json
-{}
+{
+	"newUser": {
+		"_id": "60af...bb8",
+		"username": "kev",
+		"email": "kev@email.com",
+		"password": "$2b$0...yLA9vi"
+	}
+}
 ```
 
 ### `POST /api/auth/login`
@@ -94,7 +101,16 @@ The body of this request must contain the following parameters:
 Example response:
 
 ```json
-{}
+{
+	"foundUser": {
+		"_id": "60...b5e9",
+		"username": "kev",
+		"email": "kev@email.com",
+		"password": "$2b$08...z6Lxam",
+		"token": "ey...QQoSc"
+	},
+	"token": "ey...QQoSc"
+}
 ```
 
 ### `POST /api/auth/me`
